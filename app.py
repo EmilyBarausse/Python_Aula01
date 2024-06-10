@@ -4,6 +4,7 @@ import os
 
 #restaurantes=['PythonBurguer','Madalousso','Notubo']
 # dicionario
+    
 restaurantes=[{'nome':'Pão com Banha','categoria':'Gourmet','ativo':False},
               {'nome':'Saco do Feijão','categoria':'Feijoada','ativo':True},
               {'nome':'Bife Sujo','categoria':'Churrascaria','ativo':False}]
