@@ -40,17 +40,31 @@ class Restaurante:
         Restaurante.exibir_subtitulo('Cadastro de novos restaurantes\n')
         nome_restaurante = input('Digite aqui o nome do novo restaurante: ')
         categoria =input(f'Digite a categoria do restaurante {nome_restaurante}: ')
-        dados_do_restaurante ={'nome':nome_restaurante,'categoria':categoria,'ativo':False}
+        dados_do_restaurante =Restaurante(nome_restaurante,categoria)
         Restaurante.restaurantes.append(dados_do_restaurante)
         print(f'O restaurante {nome_restaurante} foi cadastrado com sucesso!')
         Restaurante.voltar_menu_principal()
     
     
-    @classmethod
+    # @classmethod
+    # def listar_restaurantes(cls):
+    #     print(f'{'Nome do restaurante'.ljust(20)} | {'Categoria'.ljust(20)} | {'Status'}')
+    #     for restaurante in cls.restaurantes:
+    #         print(f'{restaurante.nome_restaurante.ljust(20)} | {restaurante.categoria.ljust(20)} | {restaurante.ativo}')
+    #         Restaurante.voltar_menu_principal()
+     
+     
+    @classmethod       
     def listar_restaurantes(cls):
-        print(f'{'Nome do restaurante'.ljust(20)} | {'Categoria'.ljust(20)} | {'Status'}')
+        Restaurante.exibir_subtitulo('Listando restaurantes')
+    
         for restaurante in cls.restaurantes:
-            print(f'{restaurante.nome_restaurante.ljust(20)} | {restaurante.categoria.ljust(20)} | {restaurante.ativo}')
+            nome_restaurante=restaurante.nome_restaurante
+            categoria=restaurante.categoria
+            ativo= 'Ativado' if restaurante.ativo else 'Desativado'
+            print(f'- {nome_restaurante.ljust(20)} | {categoria.ljust(20)} | {ativo}')
+            
+        Restaurante.voltar_menu_principal()
 
 
     @classmethod
@@ -60,11 +74,15 @@ class Restaurante:
         restaurante_encontrado = False
         
         for restaurante in cls.restaurantes:
-            if nome_do_restaurante==restaurante.nome:
+            if nome_do_restaurante==restaurante.nome_restaurante:
                 restaurante_encontrado=True
                 restaurante.ativo=not restaurante.ativo
-                mensagem=f'O restaurante {nome_do_restaurante} foi ativado com sucesso!' if restaurante.ativo else f'O restaurante {nome_do_restaurante} foi desativado com sucesso!'
-                print(mensagem)
+                if (restaurante.ativo==False):
+                    print(f'O restaurante {nome_do_restaurante} foi ativado com sucesso!')
+                else: 
+                    print(f'O restaurante {nome_do_restaurante} foi desativado com sucesso!')
+                    print('')
+            
                 
         if not restaurante_encontrado:
             print(f'O restaurante {nome_do_restaurante} não foi encontrado.')
@@ -107,8 +125,8 @@ class Restaurante:
         Restaurante.exibir_opcoes()
         Restaurante.escolher_opcao()
         
-    # if __name__ == '__main__':
-    #     main()
+        if __name__ == '__main__':
+            Restaurante.main()
 
 restaurante1=Restaurante('Pão com Banha','Gourmet')
 restaurante2=Restaurante('Saco do Feijão','Feijoada')
@@ -117,10 +135,3 @@ restaurante3=Restaurante('Bife Sujo','Churrascaria')
 Restaurante.exibir_nome_do_programa()
 Restaurante.exibir_opcoes()
 Restaurante.escolher_opcao()
-Restaurante.cadastrar_novo_restaurante()
-Restaurante.voltar_menu_principal()
-Restaurante.listar_restaurantes()
-Restaurante.alterar_estado_do_restaurante()
-Restaurante.finalizar_app()
-Restaurante.opcao_invalida()
-Restaurante.exibir_subtitulo()
