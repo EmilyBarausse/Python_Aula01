@@ -53,7 +53,6 @@ class Restaurante:
     #         print(f'{restaurante.nome_restaurante.ljust(20)} | {restaurante.categoria.ljust(20)} | {restaurante.ativo}')
     #         Restaurante.voltar_menu_principal()
      
-     
     @classmethod       
     def listar_restaurantes(cls):
         Restaurante.exibir_subtitulo('Listando restaurantes')
